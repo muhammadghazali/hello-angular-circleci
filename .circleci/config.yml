@@ -15,8 +15,8 @@ jobs:
       - checkout
 
       - run:
-        name: install angular-cli
-        command: 'npm install -g @angular/cli'
+          name: install angular-cli
+          command: 'npm install -g @angular/cli'
 
       - restore_cache:
           keys: dependency-cache-{{ checksum "package.json" }}
