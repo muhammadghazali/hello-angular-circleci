@@ -1,0 +1,33 @@
+# Javascript Node CircleCI 2.0 configuration file
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.3-browsers
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+
+      - run:
+        name: install angular-cli
+        command: 'npm install -g @angular/cli'
+
+      - restore_cache:
+          keys: dependency-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: Install npm
+          command: npm install
+
+      - save_cache:
+          paths:
+              - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: e2e test
+          command: npm run e2e
