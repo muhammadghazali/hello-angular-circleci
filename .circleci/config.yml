@@ -3,11 +3,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9.3-browsers
+      - image: circleci/node:8.9.4-browsers
 
     branches:
       only:
         - master
+
+    working_directory: ~/hello-angular-circleci
 
     steps:
       - checkout
